@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Crie criptogramas personalizados com o alfabeto e símbolos correspondentes. Ferramenta interativa de lógica e diversão.">
+    <meta name="keywords" content="criptograma, alfabeto, símbolos, jogo educativo, quebra-cabeça, geração de códigos">
+    <meta name="author" content="Seu Nome">
+    <title>Gerador de Criptograma Personalizado</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f3f3f3;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        .alfabeto-simbolos {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .simbolo {
+            text-align: center;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-size: 1.5rem;
+        }
+
+        .botao-gerar {
+            width: 100%;
+            padding: 10px;
+            background-color: #0077b6;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .botao-gerar:hover {
+            background-color: #0096c7;
+        }
+
+        .criptograma-gerado {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            word-wrap: break-word;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Gerador de Criptograma Personalizado</h1>
+
+        <textarea id="mensagem" placeholder="Digite sua mensagem aqui..."></textarea>
+
+        <div class="alfabeto-simbolos">
+            <div class="simbolo">A - &#9733;</div> <!-- Estrela -->
+            <div class="simbolo">B - &#9829;</div> <!-- Coração -->
+            <div class="simbolo">C - &#9728;</div> <!-- Sol -->
+            <div class="simbolo">D - &#9996;</div> <!-- Mão -->
+            <div class="simbolo">E - &#128293;</div> <!-- Fogo -->
+            <div class="simbolo">F - &#128161;</div> <!-- Lâmpada -->
+            <div class="simbolo">G - &#9875;</div> <!-- Âncora -->
+            <div class="simbolo">H - &#128640;</div> <!-- Foguete -->
+            <div class="simbolo">I - &#127775;</div> <!-- Estrela cadente -->
+            <div class="simbolo">J - &#128125;</div> <!-- Monstro -->
+            <div class="simbolo">K - &#128176;</div> <!-- Dinheiro -->
+            <div class="simbolo">L - &#127926;</div> <!-- Nota musical -->
+            <div class="simbolo">M - &#128526;</div> <!-- Óculos de sol -->
+            <div class="simbolo">N - &#128512;</div> <!-- Rosto sorrindo -->
+            <div class="simbolo">O - &#128060;</div> <!-- Cachorro -->
+            <div class="simbolo">P - &#127800;</div> <!-- Flor -->
+            <div class="simbolo">Q - &#128045;</div> <!-- Gato -->
+            <div class="simbolo">R - &#127757;</div> <!-- Planeta Terra -->
+            <div class="simbolo">S - &#127880;</div> <!-- Confete -->
+            <div class="simbolo">T - &#128142;</div> <!-- Diamante -->
+            <div class="simbolo">U - &#128675;</div> <!-- Bicicleta -->
+            <div class="simbolo">V - &#9992;</div> <!-- Avião -->
+            <div class="simbolo">W - &#128029;</div> <!-- Coelho -->
+            <div class="simbolo">X - &#128680;</div> <!-- Sinal de proibido -->
+            <div class="simbolo">Y - &#128081;</div> <!-- Coroa -->
+            <div class="simbolo">Z - &#128170;</div> <!-- Músculo -->
+        </div>
+
+        <button class="botao-gerar" onclick="gerarCriptograma()">Gerar Criptograma</button>
+
+        <div id="criptogramaGerado" class="criptograma-gerado"></div>
+    </div>
+
+    <script>
+        function gerarCriptograma() {
+            const mensagem = document.getElementById('mensagem').value.toUpperCase();
+            const criptogramaGerado = document.getElementById('criptogramaGerado');
+
+            const simbolos = {
+                'A': '&#9733;', 'B': '&#9829;', 'C': '&#9728;', 'D': '&#9996;', 'E': '&#128293;',
+                'F': '&#128161;', 'G': '&#9875;', 'H': '&#128640;', 'I': '&#127775;', 'J': '&#128125;',
+                'K': '&#128176;', 'L': '&#127926;', 'M': '&#128526;', 'N': '&#128512;', 'O': '&#128060;',
+                'P': '&#127800;', 'Q': '&#128045;', 'R': '&#127757;', 'S': '&#127880;', 'T': '&#128142;',
+                'U': '&#128675;', 'V': '&#9992;', 'W': '&#128029;', 'X': '&#128680;', 'Y': '&#128081;', 
+                'Z': '&#128170;', ' ': ' '
+            };
+
+            let resultado = '';
+            for (let letra of mensagem) {
+                resultado += simbolos[letra] ? simbolos[letra] + ' ' : letra + ' ';
+            }
+
+            criptogramaGerado.innerHTML = `<strong>Criptograma:</strong><br>${resultado}`;
+        }
+    </script>
+</body>
+</html>
